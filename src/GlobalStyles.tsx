@@ -6,17 +6,17 @@ const GlobalStyle = createGlobalStyle`
 
 @font-face{
   font-family: 'Styled';
-  src: url(/fonts/poor_richard.ttf);
+  src: url(/fonts/cambria.ttf);
 }
 
 @font-face{
   font-family: 'Main';
-  src: url(/fonts/mian.ttf);
+  src: url(/fonts/cambria.ttf);
 }
 
 @font-face{
   font-family: 'Styled';
-  src: url(/fonts/tangerine.ttf);
+  src: url(/fonts/cambria.ttf);
 }
 
 /* Fonts Used End */
@@ -155,8 +155,7 @@ body{
   font-size: .9pc;
   line-height: 2pc;
   font-family: Main;
-  /* background-color: #f7f7f7; */
-  background: linear-gradient(135deg, #fafafa, #f0f0f0);
+  background-color: #fff;
   background-attachment: fixed;
   color: #323232;
   overflow-x: hidden;
@@ -196,6 +195,36 @@ button{
   padding: 0 .5rem;
 }
 
+h1 {
+  font-size: 2pc;
+  line-height: 3pc;
+}
+
+h2 {
+  font-size: 1.8pc;
+  line-height: 3pc;
+}
+
+h3 {
+  font-size: 1.6pc;
+  line-height: 2.5pc;
+}
+
+h4 {
+  font-size: 1.4pc;
+  line-height: 2.5pc;
+}
+
+h5 {
+  font-size: 1.2pc;
+  line-height: 2pc;
+}
+
+h6 {
+  font-size: 1pc;
+  line-height: 1.8pc;
+}
+
 
 /* Base Elements Styles */
 
@@ -231,17 +260,17 @@ button{
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #fafafa;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #4887b0;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #396b8b;
 }
 
 /* Custom Scroll bar END */
