@@ -1,14 +1,18 @@
+import { useSelector } from "react-redux"
 import styled from "styled-components"
-import { sitesList } from "../utils"
+import { catType, sitesList } from "../utils"
 
 const ListPart = () => {
+	const filterText = (site: any) => site.name.toLowerCase().startsWith(searchText.toLowerCase())
+	const { searchText, categories }: { categories: catType[], searchText: string } = useSelector((store: any) => store.filter)
+	const filterCat = (site: any) => site.category.some((r: any) => categories.filter(cat => cat.active).map(cat => cat.name).includes(r))
 	return (
 		<ListPartStyle>
 			<div className="inner">
-				{sitesList.map(site => <div key={site.id} className="site-holder">
+				{sitesList.filter(filterText).filter(filterCat).map(site => <div key={site.id} className="site-holder">
 					<div className="si-in">
 						<h3>{site.name}</h3>
-						<p>{site.description.slice(0, 100)}</p>
+						<p>{site.description.slice(0, 100) + (site.description.length > 100 ? "..." : "")}</p>
 						<p><a href={"https://" + site.url} target="_blank" rel="noopener noreferrer">{site.url}</a></p>
 					</div>
 				</div>)}
@@ -31,7 +35,7 @@ const ListPartStyle = styled.div`
 	.inner {
 		display: flex;
 		flex-wrap: wrap;
-		align-items: stretch;
+		align-items: flex-start;
 		justify-content: space-around;
 		padding-bottom: 1pc;
 

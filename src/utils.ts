@@ -1,26 +1,26 @@
 import { v4 } from "uuid";
 
 export const sitesList = [
-  {
-    id: v4(),
-    url: "elpis.cc",
-    name: "My Portfolio",
-    description: `
-      Welcome to my personal portfolio website! Here, you'll find a collection of my past and current projects,
-      as well as information about my background and skills. The website is designed to give you an idea of my 
-      experience and capabilities as a professional. The site is easy to navigate, with clear sections for my 
-      projects, skills, services, and contact information. You can also find links to my social media profiles and other
-      online presences. I update my portfolio regularly, so be sure to check back often to see my latest work.
-    `,
-    category: [
-      "frontend",
-      "personal",
-      "standalone"
-    ],
-    alternate: [
+  // {
+  //   id: v4(),
+  //   url: "elpis.cc",
+  //   name: "My Portfolio",
+  //   description: `
+  //     Welcome to my personal portfolio website! Here, you'll find a collection of my past and current projects,
+  //     as well as information about my background and skills. The website is designed to give you an idea of my 
+  //     experience and capabilities as a professional. The site is easy to navigate, with clear sections for my 
+  //     projects, skills, services, and contact information. You can also find links to my social media profiles and other
+  //     online presences. I update my portfolio regularly, so be sure to check back often to see my latest work.
+  //   `,
+  //   category: [
+  //     "frontend",
+  //     "personal",
+  //     "standalone"
+  //   ],
+  //   alternate: [
 
-    ]
-  },
+  //   ]
+  // },
   {
     id: v4(),
     url: "sites.elpis.cc",
@@ -221,3 +221,19 @@ export const sitesList = [
     alternate: []
   },
 ]
+
+export type catType = { id: string; name: string; active: boolean; }
+
+export const compare = (a: catType, b: catType) => {
+  if (a.name < b.name) {
+    return -1;
+  }
+  if (a.name > b.name) {
+    return 1;
+  }
+  return 0;
+}
+
+export const collectCats = () => sitesList.reduce((total, val: any) => {
+  return total.concat(val.category);
+}, []).filter((value, index, array) => array.indexOf(value) === index).map(cat => { return { id: v4(), name: cat, active: true } }).sort(compare)

@@ -265,12 +265,12 @@ h6 {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #4887b0;
+  background: #ddd;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #396b8b;
+  background: #ccc;
 }
 
 /* Custom Scroll bar END */
