@@ -8,15 +8,18 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
-const Home = () => {
+const Home = ({ queryx, initial }: any) => {
   const router = useRouter()
-  const query = router?.query?.site
+  const [query, setQuery] = useState(queryx)
+  const [useAnimations, setUseAnimations] = useState(initial)
   const [site, setSite] = useState(query ? sitesList.find(si => si.slug === query) : undefined)
   useEffect(() => {
+    setQuery(router.asPath.split("/?site=")[1])
+    const query = router.asPath.split("/?site=")[1]
     if (query) setSite(sitesList.find(si => si.slug === query))
     else setSite(undefined)
-  }, [query])
-  
+  }, [router.asPath])
+
   return (
 
     <HomeStyles>
@@ -27,14 +30,23 @@ const Home = () => {
 
       <QueryPart />
 
-      <ListPart />
+      <ListPart sUA={setUseAnimations} />
 
-      {typeof query === "string" && <SiteView slug={query} />}
+      {typeof query === "string" && <SiteView slug={query} ua={useAnimations} />}
 
     </HomeStyles>
 
   )
 
+}
+
+export async function getServerSideProps(context: any) {
+  return {
+    props: {
+      queryx: context.query?.site ? context.query?.site : null,
+      initial: context.query?.site ? false : true
+    },
+  }
 }
 
 const HomeStyles = styled.div`

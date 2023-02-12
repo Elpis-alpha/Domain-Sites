@@ -29,7 +29,7 @@ const HeadTag = ({ title, description }: { title?: string, description?: string 
 
       <meta name="description" content={description ? description : siteDescription} />
 
-      <title>{title && `${title} - `}{siteName}</title>
+      <title>{title ? `${title} - ${siteName}` : siteName}</title>
 
       <link rel="icon" href="/favicon.ico" />
 

@@ -6,7 +6,7 @@ import { v4 } from "uuid"
 import { waitFor } from "../controllers/TimeCtrl"
 import { sitesList } from "../utils"
 
-const SiteView = ({ slug }: { slug: string }) => {
+const SiteView = ({ slug, ua }: { slug: string, ua: any }) => {
 	const router = useRouter()
 	const [closeView, setCloseView] = useState(false)
 	const site = sitesList.find(si => si.slug === slug)
@@ -17,7 +17,8 @@ const SiteView = ({ slug }: { slug: string }) => {
 	}
 	if (!site) return <></>
 	return (
-		<SiteViewStyle className={closeView ? "fade-out" : ""}>
+		// @ts-ignore
+		<SiteViewStyle className={closeView ? "fade-out" : ""} ua={ua}>
 			<div className="inner">
 				<div className="ih-small">
 					<h3>{site.name}</h3>
@@ -50,7 +51,7 @@ const SiteViewStyle = styled.div`
 		to {opacity: 1}	
 	}
 	opacity: 1;
-	animation: opacity-in .5s 1;
+	${(props: any) => props.ua ? "animation: opacity-in .5s 1;" : "animation: initial;"};
 	
 	&.fade-out {
 		@keyframes opacity-out {

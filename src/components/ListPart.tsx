@@ -3,12 +3,12 @@ import { useSelector } from "react-redux"
 import styled from "styled-components"
 import { catType, sitesList } from "../utils"
 
-const ListPart = () => {
+const ListPart = ({ sUA }: { sUA: any }) => {
 	const router = useRouter()
 	const filterText = (site: any) => site.name.toLowerCase().startsWith(searchText.toLowerCase())
 	const { searchText, categories }: { categories: catType[], searchText: string } = useSelector((store: any) => store.filter)
 	const filterCat = (site: any) => site.category.some((r: any) => categories.filter(cat => cat.active).map(cat => cat.name).includes(r))
-	const clickSite = (e: any, site: any) => {if (e.target.tagName.toLowerCase() !== 'a') router.push(`/?site=${site.slug}`)}
+	const clickSite = (e: any, site: any) => { sUA(true); if (e.target.tagName.toLowerCase() !== 'a') router.push(`/?site=${site.slug}`) }
 	return (
 		<ListPartStyle>
 			<div className="inner">
