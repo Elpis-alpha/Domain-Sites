@@ -16,7 +16,7 @@ const ListPart = () => {
 					<div className="si-in">
 						<h3>{site.name}</h3>
 						<p>{site.description.slice(0, 100) + (site.description.length > 100 ? "..." : "")}</p>
-						<p><a href={"https://" + site.url} target="_blank" rel="noopener noreferrer">{site.url}</a></p>
+						<p><a href={"https://" + site.url} target="_blank" rel="noopener noreferrer" title={site.name}>{site.url}</a></p>
 					</div>
 				</div>)}
 			</div >

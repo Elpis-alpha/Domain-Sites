@@ -12,18 +12,20 @@ const SiteView = ({ slug }: { slug: string }) => {
 	const site = sitesList.find(si => si.slug === slug)
 	const closePanel = async () => {
 		setCloseView(true)
-		await waitFor(550)
+		await waitFor(450)
 		router.push("/")
 	}
 	if (!site) return <></>
 	return (
 		<SiteViewStyle className={closeView ? "fade-out" : ""}>
 			<div className="inner">
-				<h3>{site.name}</h3>
-				<p>{site.description}</p>
-				<p><a href={"https://" + site.url} target="_blank" rel="noopener noreferrer">{site.url}</a></p>
-				<div className="cats">{site.category.map(cat => <div key={"sc-" + v4()}>{cat}</div>)}</div>
-				<div className="alts">{site.alternate.map(alt => <a key={"alt-" + v4()} href={"https://" + alt} target="_blank" rel="noopener noreferrer">{alt}</a>)}</div>
+				<div className="ih-small">
+					<h3>{site.name}</h3>
+					<p>{site.description}</p>
+					<p><a href={"https://" + site.url} target="_blank" rel="noopener noreferrer">{site.url}</a></p>
+					<div className="cats">{site.category.map(cat => <div key={"sc-" + v4()}>{cat}</div>)}</div>
+					<div className="alts">{site.alternate.map(alt => <a key={"alt-" + v4()} href={"https://" + alt} target="_blank" rel="noopener noreferrer">{alt}</a>)}</div>
+				</div>
 			</div>
 			<div className="cancel-x-1" onClick={closePanel}><FaTimes /></div>
 		</SiteViewStyle>
@@ -68,6 +70,10 @@ const SiteViewStyle = styled.div`
 		text-align: center;
 		max-height: 70vh;
 		overflow: auto;
+
+		.ih-small {
+			display: contents;
+		}
 
 		.cats {
 			display: flex;
@@ -119,6 +125,12 @@ const SiteViewStyle = styled.div`
 			height: 100vh;
 			max-height: initial;
 			overflow: auto;
+			display: flex;
+
+			.ih-small {
+				margin: auto 0;
+				display: block;
+			}
 
 			.cats {
 				display: flex;

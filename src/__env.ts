@@ -1,7 +1,7 @@
 // Static Variables
 export const creator = "Elpis"
-export const siteName = "Domain Sites"
-export const siteDescription = "A list of all websites under the elpis.cc domain"
+export const siteName = "Elpis Sites"
+export const siteDescription = "A list of all websites that belong to Elpis, especially those under the elpis.cc domain as well as other (if any) sites that he owns."
 
 // Dynamic Variables
 export const host = process.env.NEXT_PUBLIC_HOST

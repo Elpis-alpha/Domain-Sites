@@ -26,8 +26,8 @@ export const sitesList = [
     id: v4(),
     slug: "sec",
     url: "sites.elpis.cc",
-    name: "Domain Sites",
-    description: "This is the website you are currently looking at. It displays a list of all the websites I have on this domain.",
+    name: "Elpis Sites",
+    description: "This is the website you are currently looking at. It displays a list of all websites that belong to Elpis, especially those under the elpis.cc domain as well as other (if any) sites that he owns.",
     category: [
       "frontend",
       "personal",
