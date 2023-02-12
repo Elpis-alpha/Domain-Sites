@@ -1,15 +1,18 @@
+import { useRouter } from "next/router"
 import { useSelector } from "react-redux"
 import styled from "styled-components"
 import { catType, sitesList } from "../utils"
 
 const ListPart = () => {
+	const router = useRouter()
 	const filterText = (site: any) => site.name.toLowerCase().startsWith(searchText.toLowerCase())
 	const { searchText, categories }: { categories: catType[], searchText: string } = useSelector((store: any) => store.filter)
 	const filterCat = (site: any) => site.category.some((r: any) => categories.filter(cat => cat.active).map(cat => cat.name).includes(r))
+	const clickSite = (e: any, site: any) => {if (e.target.tagName.toLowerCase() !== 'a') router.push(`/?site=${site.slug}`)}
 	return (
 		<ListPartStyle>
 			<div className="inner">
-				{sitesList.filter(filterText).filter(filterCat).map(site => <div key={site.id} className="site-holder">
+				{sitesList.filter(filterText).filter(filterCat).map(site => <div onClick={e => clickSite(e, site)} key={site.id} className="site-holder">
 					<div className="si-in">
 						<h3>{site.name}</h3>
 						<p>{site.description.slice(0, 100) + (site.description.length > 100 ? "..." : "")}</p>
@@ -40,19 +43,36 @@ const ListPartStyle = styled.div`
 		padding-bottom: 1pc;
 
 		.site-holder {
+			display: block;
+			color: inherit;
+			text-decoration: none;
 			width: 30%;
 			margin: 1pc 0;
 			border-radius: 1pc;
 			padding: .8pc 1pc;
+			cursor: pointer;
 			background: linear-gradient(145deg, #e6e6e6, #ffffff);
 			box-shadow:  9px 9px 18px #e3e3e3, -9px -9px 18px #ffffff;
+			transition: transform .5s;
+
+			&:hover {
+				transform: scale(1.1);
+			}
 			
 			@media screen and (max-width: 1200px) {
 				width: 47%;
+				
+				&:hover {
+					transform: scale(1.08);
+				}
 			}
 			
 			@media screen and (max-width: 1000px) {
 				width: 100%;
+				
+				&:hover {
+					transform: scale(1.05);
+				}
 			}
 		}
 	}

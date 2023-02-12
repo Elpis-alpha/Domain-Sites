@@ -1,8 +1,12 @@
 import ListPart from '@/src/components/ListPart'
 import QueryPart from '@/src/components/QueryPart'
+import SiteView from '@/src/components/SiteView'
+import { useRouter } from 'next/router'
 import styled from 'styled-components'
 
 const Home = () => {
+  const router = useRouter()
+  const query = router?.query?.site
 
   return (
 
@@ -11,6 +15,8 @@ const Home = () => {
       <QueryPart />
 
       <ListPart />
+
+      {typeof query === "string" && <SiteView slug={query} />}
 
     </HomeStyles>
 
