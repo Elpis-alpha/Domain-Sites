@@ -227,7 +227,7 @@ export const sitesList = [
   },
   {
     id: v4(),
-    slug: "wec",
+    slug: "wgec",
     url: "words.elpis.cc",
     name: "Word Generator",
     description: "A little interface I created because I had difficulty naming a website I wanted to make. The name of the website is Nyux Whispers. If it is not on this list, then it is still in development. Look foward to it.",

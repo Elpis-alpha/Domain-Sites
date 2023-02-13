@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { useRouter } from "next/router"
 import { useSelector } from "react-redux"
 import styled from "styled-components"
@@ -14,7 +15,7 @@ const ListPart = ({ sUA }: { sUA: any }) => {
 			<div className="inner">
 				{sitesList.filter(filterText).filter(filterCat).map(site => <div onClick={e => clickSite(e, site)} key={site.id} className="site-holder">
 					<div className="si-in">
-						<h3>{site.name}</h3>
+						<h3><Link href={`/?site=${site.slug}`} title={site.name}>{site.name}</Link></h3>
 						<p>{site.description.slice(0, 100) + (site.description.length > 100 ? "..." : "")}</p>
 						<p><a href={"https://" + site.url} target="_blank" rel="noopener noreferrer" title={site.name}>{site.url}</a></p>
 					</div>
@@ -72,6 +73,14 @@ const ListPartStyle = styled.div`
 				
 				&:hover {
 					transform: scale(1.05);
+				}
+			}
+
+			h3 {
+
+				a {
+					color: inherit;
+					text-decoration: none;
 				}
 			}
 		}
